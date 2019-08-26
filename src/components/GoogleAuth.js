@@ -13,8 +13,11 @@ class GoogleAuth extends Component {
           scope: 'email',
         })
         .then(() => {
+          // store auth instance for re-use
           this.auth = window.gapi.auth2.getAuthInstance();
+          // check if user is currently signed in
           this.onAuthChange(this.auth.isSignedIn.get());
+          // add listener when sign in changes
           this.auth.isSignedIn.listen(this.onAuthChange);
         });
     });
